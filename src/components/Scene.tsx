@@ -2,6 +2,7 @@ import { Suspense, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import {
 	Environment,
+	OrbitControls,
 	Stars,
 	useGLTF,
 	ContactShadows,
@@ -16,7 +17,7 @@ function OrceBot() {
 	useFrame((state) => {
 		if (!group.current) return;
 		const t = state.clock.getElapsedTime();
-		group.current.rotation.y = Math.sin(t * 0.25) * 0.35;
+		group.current.rotation.y = Math.PI + Math.PI / 6 + Math.sin(t * 0.3) * 0.25;
 	});
 
 	return (
@@ -50,9 +51,9 @@ export default function Scene() {
 			<Suspense fallback={null}>
 				<Float
 					speed={1.4}
-					rotationIntensity={0.4}
-					floatIntensity={1.2}
-					floatingRange={[-0.18, 0.18]}
+					rotationIntensity={0.25}
+					floatIntensity={1}
+					floatingRange={[-0.15, 0.15]}
 				>
 					<OrceBot />
 				</Float>
@@ -78,6 +79,14 @@ export default function Scene() {
 
 				<Environment preset="city" />
 			</Suspense>
+
+			<OrbitControls
+				enablePan={false}
+				enableZoom={false}
+				minPolarAngle={Math.PI / 3}
+				maxPolarAngle={(Math.PI * 2) / 3}
+				autoRotate={false}
+			/>
 		</Canvas>
 	);
 }
