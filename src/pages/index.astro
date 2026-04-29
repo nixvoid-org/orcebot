@@ -1,5 +1,34 @@
 ---
 import Scene from '../components/Scene.tsx';
+
+const title = 'OrceBot — a tiny robot drifting through space | nixvoid';
+const description =
+	'Meet OrceBot: a small machine adrift in the cold dark of space. Watch the interactive 3D companion float silently among the stars — a calm, distraction-free landing experience from nixvoid.';
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = new URL('/og-image.svg', Astro.site).toString();
+const repoUrl = 'https://github.com/nixvoid-org/orcebot';
+
+const websiteSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: 'OrceBot',
+	url: Astro.site?.toString() ?? canonical,
+	description,
+	publisher: {
+		'@type': 'Organization',
+		name: 'nixvoid',
+		url: 'https://github.com/nixvoid-org',
+	},
+};
+
+const orgSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'nixvoid',
+	url: 'https://github.com/nixvoid-org',
+	logo: ogImage,
+	sameAs: ['https://github.com/nixvoid-org'],
+};
 ---
 
 <html lang="en">
@@ -9,14 +38,34 @@ import Scene from '../components/Scene.tsx';
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>OrceBot — drifting through the void</title>
-		<meta
-			name="description"
-			content="OrceBot floats silently through the cold dark of space."
-		/>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<meta name="theme-color" content="#05030f" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="nixvoid" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="OrceBot drifting through space, on a starfield background" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content="OrceBot drifting through space, on a starfield background" />
+
+		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 	</head>
 	<body>
 		<main class="stage">
+			<h2 class="visually-hidden">An interactive 3D companion floating in space</h2>
+
 			<div class="scene">
 				<Scene client:only="react" />
 			</div>
@@ -29,9 +78,9 @@ import Scene from '../components/Scene.tsx';
 					orcebot
 				</span>
 				<nav class="nav">
-					<a href="#about">about</a>
-					<a href="#tech">tech</a>
-					<a href="#contact">contact</a>
+					<a href={repoUrl} target="_blank" rel="noopener noreferrer">
+						source on github
+					</a>
 				</nav>
 			</header>
 
@@ -46,8 +95,14 @@ import Scene from '../components/Scene.tsx';
 					untethered, somewhere between here and the stars.
 				</p>
 				<div class="cta">
-					<a class="btn btn-primary" href="#about">Meet OrceBot</a>
-					<a class="btn btn-ghost" href="#tech">How it works</a>
+					<a
+						class="btn btn-primary"
+						href={repoUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						View the source
+					</a>
 				</div>
 			</section>
 
@@ -100,6 +155,18 @@ import Scene from '../components/Scene.tsx';
 				width: 100vw;
 				height: 100vh;
 				overflow: hidden;
+			}
+
+			.visually-hidden {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				white-space: nowrap;
+				border: 0;
 			}
 
 			.scene {
