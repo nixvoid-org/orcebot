@@ -6,7 +6,6 @@ const description =
 	'Meet OrceBot: a small machine adrift in the cold dark of space. Watch the interactive 3D companion float silently among the stars — a calm, distraction-free landing experience from nixvoid.';
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = new URL('/og-image.svg', Astro.site).toString();
-const repoUrl = 'https://github.com/nixvoid-org/orcebot';
 
 const websiteSchema = {
 	'@context': 'https://schema.org',
@@ -73,43 +72,20 @@ const orgSchema = {
 			<div class="vignette" aria-hidden="true"></div>
 
 			<header class="topbar">
-				<span class="brand">
-					<span class="brand-dot"></span>
-					orcebot
-				</span>
-				<nav class="nav">
-					<a href={repoUrl} target="_blank" rel="noopener noreferrer">
-						source on github
-					</a>
-				</nav>
+				<span class="brand">Orcebot</span>
 			</header>
 
-			<section class="hero">
-				<p class="eyebrow">Adrift in the void</p>
-				<h1>
-					OrceBot
-					<span class="hero-accent">drifts through space</span>
-				</h1>
-				<p class="lede">
-					A small machine, a large silence. Watch it float — gently spinning,
-					untethered, somewhere between here and the stars.
-				</p>
-				<div class="cta">
+			<footer class="footer">
+				<span>
+					© {new Date().getFullYear()}{' '}
 					<a
-						class="btn btn-primary"
-						href={repoUrl}
+						class="footer-link"
+						href="https://nixvoid.com"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						View the source
+						Nixvoid
 					</a>
-				</div>
-			</section>
-
-			<footer class="footer">
-				<span>© {new Date().getFullYear()} nixvoid</span>
-				<span class="status">
-					<span class="status-dot"></span> live signal
 				</span>
 			</footer>
 		</main>
@@ -122,6 +98,7 @@ const orgSchema = {
 				--muted: #8a8fb8;
 				--accent: #a78bfa;
 				--accent-2: #22d3ee;
+				--yellow: #facc15;
 			}
 
 			* {
@@ -218,130 +195,11 @@ const orgSchema = {
 			}
 
 			.brand {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.55rem;
-				font-weight: 600;
-				text-transform: lowercase;
-			}
-
-			.brand-dot {
-				width: 8px;
-				height: 8px;
-				border-radius: 999px;
-				background: var(--accent);
-				box-shadow: 0 0 14px var(--accent);
-			}
-
-			.nav {
-				display: flex;
-				gap: 1.6rem;
-				color: var(--muted);
-			}
-
-			.nav a {
-				transition: color 0.2s ease;
-			}
-
-			.nav a:hover {
-				color: var(--fg);
-			}
-
-			.hero {
-				position: absolute;
-				left: 0;
-				right: 0;
-				bottom: 12%;
-				z-index: 2;
-				padding: 0 2.2rem;
-				max-width: 720px;
-				margin-left: clamp(1rem, 6vw, 5rem);
-				pointer-events: none;
-			}
-
-			.hero .cta,
-			.hero a {
-				pointer-events: auto;
-			}
-
-			.eyebrow {
-				margin: 0 0 0.6rem;
-				font-size: 0.78rem;
-				letter-spacing: 0.32em;
-				text-transform: uppercase;
-				color: var(--accent);
-			}
-
-			.hero h1 {
-				margin: 0 0 1rem;
-				font-size: clamp(2.4rem, 6vw, 4.6rem);
-				line-height: 1.02;
 				font-weight: 700;
-				letter-spacing: -0.02em;
-			}
-
-			.hero-accent {
-				display: block;
-				background: linear-gradient(
-					90deg,
-					var(--accent) 0%,
-					var(--accent-2) 100%
-				);
-				-webkit-background-clip: text;
-				background-clip: text;
-				color: transparent;
-			}
-
-			.lede {
-				margin: 0 0 1.6rem;
-				max-width: 36rem;
-				color: var(--muted);
-				font-size: clamp(0.95rem, 1.3vw, 1.05rem);
-				line-height: 1.6;
-			}
-
-			.cta {
-				display: flex;
-				gap: 0.8rem;
-				flex-wrap: wrap;
-			}
-
-			.btn {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.75rem 1.2rem;
-				border-radius: 999px;
-				font-size: 0.92rem;
-				font-weight: 500;
-				border: 1px solid transparent;
-				transition:
-					transform 0.2s ease,
-					background 0.2s ease,
-					border-color 0.2s ease;
-			}
-
-			.btn-primary {
-				background: linear-gradient(
-					90deg,
-					var(--accent) 0%,
-					var(--accent-2) 100%
-				);
-				color: #0b0820;
-			}
-
-			.btn-primary:hover {
-				transform: translateY(-1px);
-			}
-
-			.btn-ghost {
-				border-color: rgba(231, 233, 255, 0.18);
-				color: var(--fg);
-			}
-
-			.btn-ghost:hover {
-				border-color: rgba(231, 233, 255, 0.4);
-				background: rgba(231, 233, 255, 0.04);
+				font-size: 1.1rem;
+				letter-spacing: 0.02em;
+				color: var(--yellow);
+				text-shadow: 0 0 18px rgba(250, 204, 21, 0.35);
 			}
 
 			.footer {
@@ -351,49 +209,26 @@ const orgSchema = {
 				right: 0;
 				z-index: 3;
 				display: flex;
-				justify-content: space-between;
+				justify-content: center;
 				padding: 1.2rem 2.2rem;
 				font-size: 0.78rem;
 				color: var(--muted);
 				letter-spacing: 0.06em;
 			}
 
-			.status {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.45rem;
+			.footer-link {
+				color: var(--fg);
+				border-bottom: 1px solid rgba(231, 233, 255, 0.25);
+				transition: border-color 0.2s ease;
 			}
 
-			.status-dot {
-				width: 6px;
-				height: 6px;
-				border-radius: 999px;
-				background: #22d3ee;
-				box-shadow: 0 0 10px #22d3ee;
-				animation: pulse 1.8s ease-in-out infinite;
-			}
-
-			@keyframes pulse {
-				0%,
-				100% {
-					opacity: 1;
-				}
-				50% {
-					opacity: 0.35;
-				}
+			.footer-link:hover {
+				border-bottom-color: var(--fg);
 			}
 
 			@media (max-width: 640px) {
 				.topbar {
 					padding: 1rem 1.2rem;
-				}
-				.nav {
-					gap: 1rem;
-				}
-				.hero {
-					bottom: 9%;
-					padding: 0 1.2rem;
-					margin-left: 0;
 				}
 				.footer {
 					padding: 1rem 1.2rem;
