@@ -26,8 +26,7 @@
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@types/three": "^0.184.0",
-    "wrangler": "^4.87.0"
+    "@types/three": "^0.184.0"
   },
   "overrides": {
     "vite": "^7"
